@@ -11,4 +11,24 @@ namespace HelloWorld
             Debug.Log("Hello world! " + Time.realtimeSinceStartup);
         }
     }
+
+    [KSPAddon(KSPAddon.Startup.Flight, false)]
+    public class MyKSPAddon : MonoBehaviour
+    {
+        public void Start()
+        {
+            GameEvents.onPartDie.Add(PartDead);
+        }
+
+        public void PartDead(Part p)
+        {
+
+        }
+        public void OnDisable()
+        {
+            GameEvents.onPartDie.Remove(PartDead);
+        }
+
+
+    }
 }
